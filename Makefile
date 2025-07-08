@@ -1,105 +1,71 @@
-ifeq ($(OS),Windows_NT)
-  ifeq ($(shell uname -s),) # not in a bash-like shell
-	CLEANUP = del /F /Q
-	MKDIR = mkdir
-  else # in a bash-like shell, like msys
-	CLEANUP = rm -f
-	MKDIR = mkdir -p
-  endif
-	TARGET_EXTENSION=exe
-else
-	CLEANUP = rm -f
-	MKDIR = mkdir -p
-	TARGET_EXTENSION=out
-endif
-
-.PHONY: clean
-.PHONY: test
-.PHONY: compile
-.PHONY: install
-
-PATHU = unity/src/
-PATHS = src/
-PATHT = test/
-PATHB = build/
-PATHD = build/depends/
+# Dossiers
 PATHO = build/objs/
 PATHR = build/results/
-OBJS = $(patsubst %,$(PATHO)%,$(_OBJS))
+PATHD = build/depends/
+PATHT = test/
+PATHS = src/
+UNITY = unity/src/
 
-BUILD_PATHS = $(PATHB) $(PATHD) $(PATHO) $(PATHR)
+# Fichiers objets
+_OBJS = $(patsubst $(PATHS)%.c, $(PATHO)%.o, $(wildcard $(PATHS)*.c))
+BUILD_PATHS = $(PATHO) $(PATHR) $(PATHD)
 
-SRCT = $(wildcard $(PATHT)*.c)
+# Compilation
+CC = gcc
+CFLAGS = -I. -I$(PATHD) -I$(PATHS) -I$(UNITY) -DTEST
+LDFLAGS =
 
-COMPILE=gcc -c
-LINK=gcc
-DEPEND=gcc -MM -MG -MF
-CFLAGS=-I. -I$(PATHU) -I$(PATHS) -DTEST
-_OBJS = main.o calc.o
+# Résultats des tests
+TEST_SRCS = $(wildcard $(PATHT)*Test*.c)
+TEST_BINS = $(patsubst $(PATHT)%.c, $(PATHR)%, $(TEST_SRCS))
+RESULTS = $(addsuffix .txt, $(TEST_BINS))
 
-RESULTS = $(patsubst $(PATHT)Test%.c,$(PATHR)Test%.txt,$(SRCT) )
+# Couleurs ANSI
+GREEN = \033[0;32m
+RED = \033[0;31m
+YELLOW = \033[0;33m
+NC = \033[0m
 
-PASSED = `grep -s PASS $(PATHR)*.txt`
-FAIL = `grep -s FAIL $(PATHR)*.txt`
-IGNORE = `grep -s IGNORE $(PATHR)*.txt`
+# Règles principales
+all: $(BUILD_PATHS) compile
 
-all: test compile install
+compile: $(_OBJS)
 
 test: $(BUILD_PATHS) $(RESULTS)
-	@echo "-----------------------\nIGNORES:\n-----------------------"
-	@echo "$(IGNORE)"
-	@echo "-----------------------\nFAILURES:\n-----------------------"
-	@echo "$(FAIL)"
-	@echo "-----------------------\nPASSED:\n-----------------------"
-	@echo "$(PASSED)"
-	@echo "\nDONE"
+	@echo "\n$(YELLOW)================ IGNORE ================\n$(NC)"
+	@grep -s IGNORE $(PATHR)*.txt || true
+	@echo "\n$(RED)================ FAILURES ===============\n$(NC)"
+	@grep -s FAIL $(PATHR)*.txt || true
+	@echo "\n$(GREEN)================ PASSED ================\n$(NC)"
+	@grep -s PASS $(PATHR)*.txt || true
+	@echo "\n$(NC)================ DONE ==================\n"
 
-$(PATHR)%.txt: $(PATHB)%.$(TARGET_EXTENSION)
-	-./$< > $@ 2>&1
+install:
+	@echo "No install step defined"
 
-$(PATHB)Test%.$(TARGET_EXTENSION): $(PATHO)Test%.o $(PATHO)%.o $(PATHO)unity.o #$(PATHD)Test%.d
-	$(LINK) -o $@ $^
+# Compilation des tests (exécutables)
+$(PATHR)%: $(PATHT)%.c $(PATHO)unity.o $(_OBJS)
+	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
 
-$(PATHO)%.o:: $(PATHT)%.c
-	$(COMPILE) $(CFLAGS) $< -o $@
+# Exécution des tests -> résultats dans fichiers .txt
+$(PATHR)%.txt: $(PATHR)%
+	@./$< > $@ 2>&1 || true
 
-$(PATHO)%.o:: $(PATHS)%.c
-	$(COMPILE) $(CFLAGS) $< -o $@
+# Compilation des fichiers sources
+$(PATHO)%.o: $(PATHS)%.c
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) -c $< -o $@
 
-$(PATHO)%.o:: $(PATHU)%.c $(PATHU)%.h
-	$(COMPILE) $(CFLAGS) $< -o $@
+# Compilation de Unity
+$(PATHO)unity.o: $(UNITY)unity.c
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) -c $< -o $@
 
-$(PATHD)%.d:: $(PATHT)%.c
-	$(DEPEND) $@ $<
-
-$(PATHB):
-	$(MKDIR) $(PATHB)
-
-$(PATHD):
-	$(MKDIR) $(PATHD)
-
-$(PATHO):
-	$(MKDIR) $(PATHO)
-
-$(PATHR):
-	$(MKDIR) $(PATHR)
-
-compile: $(OBJS)
-
-install: $(OBJS)
-	$(LINK) -o calc.$(TARGET_EXTENSION) $(OBJS)
-
-format:
-	indent -linux $(PATHS)*.c $(PATHS)*.h $(PATHT)*.c
-	$(CLEANUP) $(PATHS)*~ $(PATHS)*~ $(PATHT)*~
+# Création des dossiers
+$(BUILD_PATHS):
+	@mkdir -p $@
 
 clean:
-	$(CLEANUP) $(PATHO)*.o
-	$(CLEANUP) $(PATHB)*.$(TARGET_EXTENSION)
-	$(CLEANUP) $(PATHR)*.txt
-	$(CLEANUP) calc.$(TARGET_EXTENSION)
+	rm -rf $(PATHO) $(PATHR) $(PATHD)
 
-.PRECIOUS: $(PATHB)Test%.$(TARGET_EXTENSION)
-.PRECIOUS: $(PATHD)%.d
-.PRECIOUS: $(PATHO)%.o
-.PRECIOUS: $(PATHR)%.txt
+.PHONY: all compile test clean install

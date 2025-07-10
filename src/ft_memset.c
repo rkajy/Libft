@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 22:04:46 by radandri          #+#    #+#             */
-/*   Updated: 2025/07/10 22:10:20 by radandri         ###   ########.fr       */
+/*   Updated: 2025/07/10 22:18:45 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 void	*ft_memset(void *b, int c, size_t len)
 {
-	char *array;
-	unsigned char copy;
-	int i;
+	char			*array;
+	unsigned char	copy;
+	int				i;
 
 	array = (char *)(b);
 	copy = (unsigned char)c;
 	i = 0;
-	while (i <= (int)len-1)
+	while (i <= (int)len - 1)
 	{
 		array[i] = copy;
 		i++;
 	}
-	return ((void*) b);
+	return ((void *)b);
 }
 
 // #include <string.h>
@@ -39,5 +39,5 @@ void	*ft_memset(void *b, int c, size_t len)
 //     ft_memset(str + 13, '.', 8*sizeof(char));
 
 //     printf("After memset():  %s", str);
-//     return 0;
+//     return (0);
 // }

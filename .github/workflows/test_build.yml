@@ -50,4 +50,4 @@ jobs:
 
       - name: Run norminette on src
         continue-on-error: true
-        run: norminette src
+        run: make norminette

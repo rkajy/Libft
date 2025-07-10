@@ -68,4 +68,7 @@ $(BUILD_PATHS):
 clean:
 	rm -rf $(PATHO) $(PATHR) $(PATHD)
 
+norminette:
+	norminette $(PATHS)
+
 .PHONY: all compile test clean install

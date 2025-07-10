@@ -6,12 +6,11 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 22:26:45 by radandri          #+#    #+#             */
-/*   Updated: 2025/07/09 00:20:31 by radandri         ###   ########.fr       */
+/*   Updated: 2025/07/10 18:58:59 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_tolower(int c)
 {
-	return 0;
-
+	return (0);
 }

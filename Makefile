@@ -69,6 +69,6 @@ clean:
 	rm -rf $(PATHO) $(PATHR) $(PATHD)
 
 norminette:
-	norminette $(PATHS)
+	norminette $(PATHS)*.c
 
 .PHONY: all compile test clean install

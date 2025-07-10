@@ -11,7 +11,7 @@ _OBJS = $(patsubst $(PATHS)%.c, $(PATHO)%.o, $(wildcard $(PATHS)*.c))
 BUILD_PATHS = $(PATHO) $(PATHR) $(PATHD)
 
 # Compilation
-CC = gcc
+CC = cc
 CFLAGS = -I. -I$(PATHD) -I$(PATHS) -I$(UNITY) -DTEST
 LDFLAGS =
 

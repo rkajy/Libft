@@ -6,12 +6,12 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 22:55:01 by radandri          #+#    #+#             */
-/*   Updated: 2025/07/09 00:22:08 by radandri         ###   ########.fr       */
+/*   Updated: 2025/07/10 17:13:50 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include <stdio.h>
-#include <xlocale.h>
+#include <stdio.h>
+#include <locale.h>
 #include <ctype.h>
 
 #ifndef	LIBFT_H
@@ -30,7 +30,7 @@ void *ft_memmove(void *dst, const void *src, size_t len);
 size_t	ft_strlcpy(char *restrict dst, const char *restrict src, size_t dstsize);
 size_t	ft_strlcat(char *restrict dst, const char *restrict src, size_t dstsize);
 int	ft_tolower(int c);
-int ft_toupper(int c, locale_t loc);
+int ft_toupper(int c);
 char	*ft_strchr(const char *s, int c);
 char *ft_strrchr(const char *s, int c);
 int	ft_strncmp(const char *s1, const char *s2, size_t n);

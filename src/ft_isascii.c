@@ -6,12 +6,11 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 22:21:26 by radandri          #+#    #+#             */
-/*   Updated: 2025/07/09 00:15:50 by radandri         ###   ########.fr       */
+/*   Updated: 2025/07/10 19:12:06 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_isascii(int c)
 {
-	return 0;
-
+	return (0);
 }

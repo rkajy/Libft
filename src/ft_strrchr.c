@@ -6,12 +6,11 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 11:04:57 by radandri          #+#    #+#             */
-/*   Updated: 2025/07/09 00:20:41 by radandri         ###   ########.fr       */
+/*   Updated: 2025/07/10 19:14:46 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char *ft_strrchr(const char *s, int c)
+char	*ft_strrchr(const char *s, int c)
 {
-	return 0;
-
+	return (0);
 }

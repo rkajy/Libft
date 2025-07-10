@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 11:11:00 by radandri          #+#    #+#             */
-/*   Updated: 2025/07/09 00:21:08 by radandri         ###   ########.fr       */
+/*   Updated: 2025/07/10 19:12:57 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,5 @@
 
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	return 0;
-
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 11:06:32 by radandri          #+#    #+#             */
-/*   Updated: 2025/07/09 00:16:54 by radandri         ###   ########.fr       */
+/*   Updated: 2025/07/10 19:14:17 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,5 @@
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	return 0;
-
+	return (0);
 }

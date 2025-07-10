@@ -6,11 +6,11 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 22:14:58 by radandri          #+#    #+#             */
-/*   Updated: 2025/07/08 11:41:34 by radandri         ###   ########.fr       */
+/*   Updated: 2025/07/10 19:12:19 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_isdigit(int c)
+int	ft_isdigit(int c)
 {
 	return (c >= 0 && c <= 9);
 }

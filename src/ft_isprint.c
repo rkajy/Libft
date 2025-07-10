@@ -6,12 +6,11 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 22:22:49 by radandri          #+#    #+#             */
-/*   Updated: 2025/07/09 00:15:57 by radandri         ###   ########.fr       */
+/*   Updated: 2025/07/10 19:12:32 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_isprint(int c)
 {
-	return 0;
-
+	return (0);
 }

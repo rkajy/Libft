@@ -6,13 +6,12 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 22:04:46 by radandri          #+#    #+#             */
-/*   Updated: 2025/07/07 22:13:16 by radandri         ###   ########.fr       */
+/*   Updated: 2025/07/10 19:13:24 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void *ft_memset(void *b, int c, size_t len)
+void	*ft_memset(void *b, int c, size_t len)
 {
-
 }

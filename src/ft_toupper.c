@@ -6,14 +6,13 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 22:23:43 by radandri          #+#    #+#             */
-/*   Updated: 2025/07/10 17:14:10 by radandri         ###   ########.fr       */
+/*   Updated: 2025/07/10 19:15:04 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int ft_toupper(int c)
+int	ft_toupper(int c)
 {
-	return 0;
-
+	return (0);
 }

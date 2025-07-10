@@ -2,6 +2,7 @@
 
 #include "unity.h"
 #include "libft.h"
+#include <string.h>
 
 void test_ft_atoi()
 {
@@ -60,7 +61,8 @@ void test_ft_memmove()
 
 void test_ft_memset()
 {
-
+	char str[50] = "GeeksForGeeks is for programming geeks.";
+	TEST_ASSERT_EQUAL_STRING(memset(str + 13, '.', 8*sizeof(char)), ft_memset(str + 13, '.', 8*sizeof(char)));
 }
 
 void test_ft_strchr()

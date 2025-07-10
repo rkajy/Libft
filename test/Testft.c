@@ -16,7 +16,7 @@ void test_ft_bzero()
 
 void test_ft_isalnum()
 {
-
+	
 }
 
 void test_ft_isalpha()
@@ -107,6 +107,13 @@ void test_ft_tolower()
 
 void test_ft_toupper()
 {
+	char i = 'A';
+	while (i <= 'Z')
+	{
+		TEST_ASSERT_EQUAL(1, ft_toupper(i));
+		i++;
+	}
+	
 	TEST_ASSERT_EQUAL(1, ft_toupper('A'));
 	TEST_ASSERT_EQUAL(1, ft_toupper('Z'));
 	TEST_ASSERT_EQUAL(0, ft_toupper('0'));

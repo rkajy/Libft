@@ -44,7 +44,12 @@ void test_ft_isalnum()
 
 void test_ft_isalpha()
 {
-
+	for (int c = 0; c <= 255; c++)
+	{
+		int expected = !!isalpha(c);
+		int actual = ft_isalpha(c);
+		TEST_ASSERT_EQUAL_INT(expected, actual);
+	}
 }
 
 void test_ft_isascii()

@@ -6,14 +6,14 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 22:55:01 by radandri          #+#    #+#             */
-/*   Updated: 2025/07/11 08:48:28 by radandri         ###   ########.fr       */
+/*   Updated: 2025/07/11 11:12:12 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-#include <stdio.h>
+# include <stddef.h>
 
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);

@@ -128,13 +128,23 @@ void test_ft_strrchr()
 
 void test_ft_tolower()
 {
-
+	char i = 'A';
+	while (i <= 'Z')
+	{
+		TEST_ASSERT_EQUAL(tolower(i), ft_tolower(i));
+		i++;
+	}
+	TEST_ASSERT_EQUAL(tolower('A'), ft_tolower('A'));
+	TEST_ASSERT_EQUAL(tolower('Z'), ft_tolower('Z'));
+	TEST_ASSERT_EQUAL(tolower(' '), ft_tolower(' '));
+	TEST_ASSERT_EQUAL(tolower('a'), ft_tolower('a'));
+	TEST_ASSERT_EQUAL(tolower('0'), ft_tolower('0'));
 }
 
 void test_ft_toupper()
 {
-	char i = 'A';
-	while (i <= 'Z')
+	char i = 'a';
+	while (i <= 'z')
 	{
 		TEST_ASSERT_EQUAL(toupper(i), ft_toupper(i));
 		i++;

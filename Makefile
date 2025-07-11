@@ -66,7 +66,7 @@ $(BUILD_PATHS):
 	@mkdir -p $@
 
 clean:
-	rm -rf $(PATHO) $(PATHR) $(PATHD)
+	rm -rf $(PATHO) $(PATHR) $(PATHD) $(PATHS)*.out
 
 norminette:
 	norminette $(PATHS)*.c

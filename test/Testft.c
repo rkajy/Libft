@@ -3,6 +3,7 @@
 #include "unity.h"
 #include "libft.h"
 #include <string.h>
+#include <ctype.h>
 
 void test_ft_atoi()
 {
@@ -16,7 +17,24 @@ void test_ft_bzero()
 
 void test_ft_isalnum()
 {
-	
+	char isalphacapital = 'A';
+	char isalpha = 'a';
+	char num = '1';
+	while (isalphacapital <= 'Z')
+	{
+		TEST_ASSERT_EQUAL_INT(isalnum(isalphacapital), ft_isalnum(isalphacapital));
+		isalphacapital++;
+	}
+	while (isalpha <= 'z')
+	{
+		TEST_ASSERT_EQUAL_INT(isalnum(isalpha), ft_isalnum(isalpha));
+		isalpha++;
+	}
+	while (num <= '9')
+	{
+		TEST_ASSERT_EQUAL_INT(isalnum(num), ft_isalnum(num));
+		num++;
+	}
 }
 
 void test_ft_isalpha()

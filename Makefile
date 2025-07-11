@@ -49,7 +49,7 @@ $(PATHR)%: $(PATHT)%.c $(PATHO)unity.o $(_OBJS)
 
 # Exécution des tests -> résultats dans fichiers .txt
 $(PATHR)%.txt: $(PATHR)%
-	@./$< > $@ 2>&1
+	@./$< 2>&1 | tee $@ || true
 
 # Compilation des fichiers sources
 $(PATHO)%.o: $(PATHS)%.c

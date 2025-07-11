@@ -54,7 +54,12 @@ void test_ft_isalpha()
 
 void test_ft_isascii()
 {
-
+	for (int i = 0; i <= 127; i++)
+	{
+		int expected = !!isascii(i);
+		int actual = ft_isascii(i);
+		TEST_ASSERT_EQUAL_INT(expected, actual);
+	}
 }
 
 void	test_ft_isdigit()

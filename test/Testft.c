@@ -136,15 +136,14 @@ void test_ft_toupper()
 	char i = 'A';
 	while (i <= 'Z')
 	{
-		TEST_ASSERT_EQUAL(1, ft_toupper(i));
+		TEST_ASSERT_EQUAL(toupper(i), ft_toupper(i));
 		i++;
 	}
-	
-	TEST_ASSERT_EQUAL(1, ft_toupper('A'));
-	TEST_ASSERT_EQUAL(1, ft_toupper('Z'));
-	TEST_ASSERT_EQUAL(0, ft_toupper('0'));
-	TEST_ASSERT_EQUAL(0, ft_toupper(' '));
-	TEST_ASSERT_EQUAL(0, ft_toupper('a'));
+	TEST_ASSERT_EQUAL(toupper('A'), ft_toupper('A'));
+	TEST_ASSERT_EQUAL(toupper('Z'), ft_toupper('Z'));
+	TEST_ASSERT_EQUAL(toupper(' '), ft_toupper(' '));
+	TEST_ASSERT_EQUAL(toupper('a'), ft_toupper('a'));
+	TEST_ASSERT_EQUAL(toupper('0'), ft_toupper('0'));
 }
 
 void setUp()

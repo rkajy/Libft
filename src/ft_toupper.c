@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 22:23:43 by radandri          #+#    #+#             */
-/*   Updated: 2025/07/10 19:45:39 by radandri         ###   ########.fr       */
+/*   Updated: 2025/07/11 16:06:44 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,9 @@
 
 int	ft_toupper(int c)
 {
-	return (c >= 'A' && c <= 'Z');
+	if (c >= 'a' && c <= 'z')
+	{
+		return (c - 32);
+	}
+	return (c);
 }

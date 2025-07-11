@@ -4,6 +4,7 @@
 #include "libft.h"
 #include <string.h>
 #include <ctype.h>
+#include <stdio.h>
 
 void test_ft_atoi()
 {
@@ -20,19 +21,23 @@ void test_ft_isalnum()
 	char isalphacapital = 'A';
 	char isalpha = 'a';
 	char num = '1';
+	int i;
+
 	while (isalphacapital <= 'Z')
 	{
-		TEST_ASSERT_EQUAL_INT(isalnum(isalphacapital), ft_isalnum(isalphacapital));
+		i = isalnum(isalphacapital);
+		//printf("isalnum(%c) = %d\n", isalphacapital, i);
+		TEST_ASSERT_EQUAL_INT(!!i, !!ft_isalnum(isalphacapital));
 		isalphacapital++;
 	}
 	while (isalpha <= 'z')
 	{
-		TEST_ASSERT_EQUAL_INT(isalnum(isalpha), ft_isalnum(isalpha));
+		TEST_ASSERT_EQUAL_INT(!!isalnum(isalpha), !!ft_isalnum(isalpha));
 		isalpha++;
 	}
 	while (num <= '9')
 	{
-		TEST_ASSERT_EQUAL_INT(isalnum(num), ft_isalnum(num));
+		TEST_ASSERT_EQUAL_INT(!!isalnum(num), !!ft_isalnum(num));
 		num++;
 	}
 }

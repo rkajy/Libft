@@ -35,7 +35,7 @@ test: $(BUILD_PATHS) $(RESULTS)
 	@echo "\n$(YELLOW)================ IGNORE ================\n$(NC)"
 	@grep -s IGNORE $(PATHR)*.txt || true
 	@echo "\n$(RED)================ FAILURES ===============\n$(NC)"
-	@grep -s FAIL $(PATHR)*.txt || true
+	@grep -s FAIL $(PATHR)*.txt && exit 1 || true
 	@echo "\n$(GREEN)================ PASSED ================\n$(NC)"
 	@grep -s PASS $(PATHR)*.txt || true
 	@echo "\n$(NC)================ DONE ==================\n"
@@ -49,7 +49,7 @@ $(PATHR)%: $(PATHT)%.c $(PATHO)unity.o $(_OBJS)
 
 # Exécution des tests -> résultats dans fichiers .txt
 $(PATHR)%.txt: $(PATHR)%
-	@./$< > $@ 2>&1 || true
+	@./$< > $@ 2>&1
 
 # Compilation des fichiers sources
 $(PATHO)%.o: $(PATHS)%.c

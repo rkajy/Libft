@@ -13,7 +13,38 @@ void test_ft_atoi()
 
 void test_ft_bzero()
 {
+	// simple test case for a few elements
+	char buffer1[10];
+	char buffer2[10];
 
+	memset(buffer1, 'A', sizeof(buffer1));
+	memset(buffer2, 'A', sizeof(buffer2));
+
+	bzero(buffer1, 5);
+	ft_bzero(buffer2, 5);
+
+	TEST_ASSERT_EQUAL_MEMORY(buffer1, buffer1, sizeof(buffer1));
+
+	// test case for each elements
+	char buff1[6] = "hello";
+	char buff2[6] = "hello";
+
+	bzero(buff1, 6);
+	ft_bzero(buff2, 6);
+	TEST_ASSERT_EQUAL_MEMORY(buff1, buff2, 6);
+
+	// zero lenght test
+	char buffer11[5] = "abcd";
+	char buffer21[5] = "abcd";
+
+	bzero(buffer11, 0);
+	ft_bzero(buffer21, 0);
+
+	TEST_ASSERT_EQUAL_MEMORY(buffer1, buffer2, 5);
+	
+	// test null test case
+	ft_bzero(NULL, 0);
+	TEST_PASS();
 }
 
 void test_ft_isalnum()
@@ -64,7 +95,6 @@ void test_ft_isascii()
 
 void	test_ft_isdigit()
 {
-
 }
 
 void test_ft_isprint()

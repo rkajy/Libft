@@ -160,11 +160,29 @@ void	test_ft_strlen()
 
 void	test_ft_strncmp()
 {
-	char s1[50] = "abcdef";
-	char s2[50] = "abcdef";
+	//compare same string, equal
+	char s1[50] = "ab";
+	char s2[50] = "ab";
 
 	int excpected = strncmp(s1, s2, 6);
 	int actual = ft_strncmp(s1, s2, 6);
+	TEST_ASSERT_EQUAL_INT(excpected, actual);
+
+
+	// P is lower than Z
+	excpected = strncmp("AZP", "AZZ", 3);
+	actual = ft_strncmp("AZP", "AZZ", 3);
+	printf("excpected strn= %d, actual ft= %d\n", excpected, actual);
+	TEST_ASSERT_LESS_OR_EQUAL(0, excpected);
+	TEST_ASSERT_LESS_OR_EQUAL(0, actual);
+
+	// equal a
+	TEST_ASSERT_EQUAL_INT(strncmp("abc", "abc", 0), ft_strncmp("abc", "abc", 0));
+
+	// greater 
+	TEST_ASSERT_GREATER_OR_EQUAL(strncmp("abc", "", 3), ft_strncmp("abc", "", 3));
+	TEST_ASSERT_GREATER_OR_EQUAL(strncmp("abc", "abd", 3), ft_strncmp("abc", "abd", 3));
+
 }
 
 void	test_ft_strnstr()

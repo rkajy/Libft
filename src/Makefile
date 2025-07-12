@@ -1,6 +1,7 @@
 CC = cc
 CFLAGS = 
-SRCS = 	*.c
+
+SRCS = $(wildcard *.c)
 OBJS = $(SRCS:.c=.o)
 NAME = libft.a
 

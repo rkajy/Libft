@@ -99,7 +99,14 @@ void	test_ft_isdigit()
 
 void test_ft_isprint()
 {
+	for (int i = 40; i <= 176; i++)
+	{
+		int excpected = isprint(i);
+		int actual = ft_isprint(i);
+		//printf("i = %d char = %c,  isprint = %d ft_isprint = %d\n", i, i, excpected, actual); 
 
+		TEST_ASSERT_EQUAL_INT(!!excpected, actual);
+	}
 }
 
 void test_ft_memchr()
@@ -153,7 +160,11 @@ void	test_ft_strlen()
 
 void	test_ft_strncmp()
 {
+	char s1[50] = "abcdef";
+	char s2[50] = "abcdef";
 
+	int excpected = strncmp(s1, s2, 6);
+	int actual = ft_strncmp(s1, s2, 6);
 }
 
 void	test_ft_strnstr()
@@ -225,7 +236,7 @@ int main(void)
 	RUN_TEST(test_ft_strrchr);
 	RUN_TEST(test_ft_tolower);
 	RUN_TEST(test_ft_toupper);
-
+	RUN_TEST(test_ft_isprint);
 	UNITY_END();
 
 	return 0;

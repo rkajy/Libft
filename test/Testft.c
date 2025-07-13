@@ -303,6 +303,7 @@ int main(void)
 	RUN_TEST(test_ft_tolower);
 	RUN_TEST(test_ft_toupper);
 	RUN_TEST(test_ft_isprint);
+	RUN_TEST(test_ft_memcpy);
 	UNITY_END();
 
 	return 0;

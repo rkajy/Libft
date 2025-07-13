@@ -121,26 +121,39 @@ void test_ft_memcmp()
 
 void test_ft_memcpy()
 {
-	char src[42] = "bonjour;";
-	char dst_exp[42];
-	char dst_act[42];
+	char src[42] = "bonjour les amis !";
+	char dst_exp[42] = {0};
+	char dst_act[42] = {0};
 
-	TEST_ASSERT_EQUAL_STRING(
-		memcpy(dst_exp, src, 2),
-		ft_memcpy(dst_act, src, 2)
-	);
-	TEST_ASSERT_EQUAL_STRING(
-		memcpy(NULL, NULL, 2),
-		ft_memcpy(NULL, NULL, 2)
-	);
-	TEST_ASSERT_EQUAL_STRING(
-		memcpy(NULL, src, 2),
-		ft_memcpy(NULL, src, 2)
-	);
-	TEST_ASSERT_EQUAL_STRING(
-		memcpy(dst_exp, NULL, 2),
-		ft_memcpy(dst_act, NULL, 2)
-	);
+	// Test 1 : copier les 2 premiers caractères
+	memcpy(dst_exp, src, 2);
+	ft_memcpy(dst_act, src, 2);
+	TEST_ASSERT_EQUAL_MEMORY(dst_exp, dst_act, 2);
+
+	// Test 2 : copier toute la chaîne
+	memset(dst_exp, 0, sizeof(dst_exp));
+	memset(dst_act, 0, sizeof(dst_act));
+	memcpy(dst_exp, src, strlen(src));
+	ft_memcpy(dst_act, src, strlen(src));
+	TEST_ASSERT_EQUAL_MEMORY(dst_exp, dst_act, strlen(src));
+
+	// Test 3 : copier 0 octet (ne doit rien faire, mais ne crasher pas)
+	TEST_ASSERT_EQUAL_PTR(NULL, ft_memcpy(NULL, NULL, 0));
+
+	// Test 4 : buffer de destination rempli avant copie partielle
+	memset(dst_exp, 'X', sizeof(dst_exp));
+	memset(dst_act, 'X', sizeof(dst_act));
+	memcpy(dst_exp + 5, src, 5);
+	ft_memcpy(dst_act + 5, src, 5);
+	TEST_ASSERT_EQUAL_MEMORY(dst_exp, dst_act, sizeof(dst_exp));
+
+	// Test 5 : copier dans le même buffer (comportement défini uniquement si buffers ne se recouvrent pas)
+	char a[] = "0123456789";
+	char b[] = "0123456789";
+	memcpy(a + 1, "XYZ", 3);
+	ft_memcpy(b + 1, "XYZ", 3);
+	TEST_ASSERT_EQUAL_MEMORY(a, b, 10);
+	
 }
 
 void test_ft_memmove()

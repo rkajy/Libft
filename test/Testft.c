@@ -111,7 +111,22 @@ void test_ft_isprint()
 
 void test_ft_memchr()
 {
-
+	char buf[] = "bonjour";
+	//cherche z, missing char
+	TEST_ASSERT_EQUAL_PTR(memchr(buf, 'z', 7), ft_memchr(buf, 'z', 7));
+	//find r at the end
+	TEST_ASSERT_EQUAL_PTR(memchr(buf, 'r', 7), ft_memchr(buf, 'r', 7));
+	//char in the outside of the limits
+	TEST_ASSERT_EQUAL_PTR(memchr(buf, 'n', 2), ft_memchr(buf, 'n', 2));
+	//n =0, shouldn't return null directly
+	TEST_ASSERT_EQUAL_PTR(memchr(buf, 'b', 0), ft_memchr(buf, 'b', 0));
+	//caractere trouve au milieu
+	TEST_ASSERT_EQUAL_PTR(memchr(buf, 'j', 7), ft_memchr(buf, 'j', 7));
+	// Recherche du caractère nul
+	char with_null[] = {'a', 'b', '\0', 'c', 'd'};
+	TEST_ASSERT_EQUAL_PTR(memchr(with_null, '\0', 5), ft_memchr(with_null, '\0', 5));
+	// Recherche après le caractère nul (non défini dans chaîne C, mais mémoire existante)
+	TEST_ASSERT_EQUAL_PTR(memchr(with_null, 'd', 5), ft_memchr(with_null, 'd', 5));
 }
 
 void test_ft_memcmp()
@@ -352,6 +367,7 @@ int main(void)
 	RUN_TEST(test_ft_isprint);
 	RUN_TEST(test_ft_memcpy);
 	RUN_TEST(test_ft_memcmp);
+	RUN_TEST(test_ft_memchr);
 	UNITY_END();
 
 	return 0;

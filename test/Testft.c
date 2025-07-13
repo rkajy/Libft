@@ -116,7 +116,41 @@ void test_ft_memchr()
 
 void test_ft_memcmp()
 {
+	// 1. Strings égales
+	char s1[] = "Bonjour";
+	char s2[] = "Bonjour";
+	TEST_ASSERT_EQUAL_INT(memcmp(s1, s2, 7), ft_memcmp(s1, s2, 7));
 
+	// 2. s1 < s2
+	char s3[] = "Bonjour";
+	char s4[] = "Bonjouz";
+	TEST_ASSERT_EQUAL_INT(memcmp(s3, s4, 7), ft_memcmp(s3, s4, 7));
+
+	// 3. s1 > s2
+	char s5[] = "Bonjouz";
+	char s6[] = "Bonjour";
+	TEST_ASSERT_EQUAL_INT(memcmp(s5, s6, 7), ft_memcmp(s5, s6, 7));
+
+	// 4. Comparaison partielle
+	char s7[] = "ABCDEF";
+	char s8[] = "ABCXYZ";
+	TEST_ASSERT_EQUAL_INT(memcmp(s7, s8, 3), ft_memcmp(s7, s8, 3)); // égaux sur 3
+	TEST_ASSERT_EQUAL_INT(memcmp(s7, s8, 4), ft_memcmp(s7, s8, 4)); // diff à partir de 4
+
+	// 5. Avec des caractères nuls
+	char s9[] = {'A', 'B', '\0', 'C'};
+	char s10[] = {'A', 'B', '\0', 'D'};
+	TEST_ASSERT_EQUAL_INT(memcmp(s9, s10, 4), ft_memcmp(s9, s10, 4));
+
+	// 6. Avec n = 0 (doit retourner 0 même si les buffers sont différents)
+	char s11[] = "abc";
+	char s12[] = "xyz";
+	TEST_ASSERT_EQUAL_INT(memcmp(s11, s12, 0), ft_memcmp(s11, s12, 0));
+
+	// 7. Comparaison de buffers binaires
+	unsigned char bin1[] = {0x01, 0x02, 0x03, 0xFF};
+	unsigned char bin2[] = {0x01, 0x02, 0x03, 0xFE};
+	TEST_ASSERT_EQUAL_INT(memcmp(bin1, bin2, 4), ft_memcmp(bin1, bin2, 4));
 }
 
 void test_ft_memcpy()
@@ -317,6 +351,7 @@ int main(void)
 	RUN_TEST(test_ft_toupper);
 	RUN_TEST(test_ft_isprint);
 	RUN_TEST(test_ft_memcpy);
+	RUN_TEST(test_ft_memcmp);
 	UNITY_END();
 
 	return 0;

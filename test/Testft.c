@@ -37,7 +37,7 @@ void test_ft_bzero()
 	char buffer11[5] = "abcd";
 	char buffer21[5] = "abcd";
 
-	bzero(buffer11, 0);
+	bzero(buffer11, (0));
 	ft_bzero(buffer21, 0);
 
 	TEST_ASSERT_EQUAL_MEMORY(buffer1, buffer2, 5);
@@ -121,7 +121,26 @@ void test_ft_memcmp()
 
 void test_ft_memcpy()
 {
+	char src[42] = "bonjour;";
+	char dst_exp[42];
+	char dst_act[42];
 
+	TEST_ASSERT_EQUAL_STRING(
+		memcpy(dst_exp, src, 2),
+		ft_memcpy(dst_act, src, 2)
+	);
+	TEST_ASSERT_EQUAL_STRING(
+		memcpy(NULL, NULL, 2),
+		ft_memcpy(NULL, NULL, 2)
+	);
+	TEST_ASSERT_EQUAL_STRING(
+		memcpy(NULL, src, 2),
+		ft_memcpy(NULL, src, 2)
+	);
+	TEST_ASSERT_EQUAL_STRING(
+		memcpy(dst_exp, NULL, 2),
+		ft_memcpy(dst_act, NULL, 2)
+	);
 }
 
 void test_ft_memmove()
@@ -144,10 +163,39 @@ void	test_ft_strlcat()
 {
 
 }
-
 void	test_ft_strlcpy()
 {
+	// usage case with enought space on dest
+	char src[56] = "bonjour;";
+	char destexp[68];
+	char destact[68];
 
+	size_t excpected = strlcpy(destexp, src, sizeof(destexp));
+	size_t actual = ft_strlcpy(destact, src, sizeof(destact));
+	TEST_ASSERT_EQUAL_INT(excpected, actual);
+	printf("exp = %s , act = %s\n", destexp, destact);
+	TEST_ASSERT_EQUAL_STRING(destexp, destact);
+	TEST_ASSERT_EQUAL_STRING(destexp, src);
+
+	// more room in the src than dest
+	char bufexp[3];
+	char bufact[3];
+	char s[56] = "bonjour;";
+	
+	excpected = strlcpy(bufexp, s, sizeof(bufexp));
+	actual = ft_strlcpy(bufact, s, sizeof(bufact));
+	TEST_ASSERT_EQUAL_INT(excpected, actual);
+	TEST_ASSERT_EQUAL_STRING(bufexp, bufact);
+
+	//source vide
+	char bufexp1[3];
+	char bufact1[3];
+	char s1[56] = "";
+	
+	excpected = strlcpy(bufexp1, s1, sizeof(bufexp1));
+	actual = ft_strlcpy(bufact1, s1, sizeof(bufact1));
+	TEST_ASSERT_EQUAL_INT(excpected, actual);
+	TEST_ASSERT_EQUAL_STRING(bufexp, bufact);
 }
 
 void	test_ft_strlen()
@@ -172,7 +220,7 @@ void	test_ft_strncmp()
 	// P is lower than Z
 	excpected = strncmp("AZP", "AZZ", 3);
 	actual = ft_strncmp("AZP", "AZZ", 3);
-	printf("excpected strn= %d, actual ft= %d\n", excpected, actual);
+	//printf("excpected strn= %d, actual ft= %d\n", excpected, actual);
 	TEST_ASSERT_LESS_OR_EQUAL(0, excpected);
 	TEST_ASSERT_LESS_OR_EQUAL(0, actual);
 

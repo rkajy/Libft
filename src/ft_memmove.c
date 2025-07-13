@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 22:12:13 by radandri          #+#    #+#             */
-/*   Updated: 2025/07/10 19:13:14 by radandri         ###   ########.fr       */
+/*   Updated: 2025/07/13 21:27:07 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,4 +14,5 @@
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
+	return (NULL);
 }

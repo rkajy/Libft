@@ -224,6 +224,29 @@ void test_ft_strchr()
 void	test_ft_strlcat()
 {
 
+	char dest_ex[11] = "a";
+	char dest_ac[11] = "a";
+	size_t ex = strlcat(dest_ex, "lorem", sizeof(dest_ex));
+	size_t ac = ft_strlcat(dest_ac, "lorem", sizeof(dest_ac));
+	TEST_ASSERT_EQUAL_INT(ex, ac);
+	TEST_ASSERT_EQUAL_STRING(dest_ex, dest_ac);
+
+	// char dest_ex1[11] = "a";
+	// char dest_ac2[11] = "a";
+	// ex = strlcat(dest_ex1, "lorem", 15);
+	// ac = ft_strlcat(dest_ac2, "lorem", 15);
+	// TEST_ASSERT_EQUAL_INT(ex, ac);
+	// TEST_ASSERT_EQUAL_STRING(dest_ex1, dest_ac2);
+
+	char buff[14];
+	char buff_a[14];
+	ft_memset(buff, 'r', 14);
+	ft_memset(buff_a, 'r', 14);
+	ex = strlcat(buff, "lorem", sizeof(dest_ex));
+	ac = ft_strlcat(buff_a, "lorem", sizeof(dest_ac));
+	TEST_ASSERT_EQUAL_INT(ex, ac);
+	TEST_ASSERT_EQUAL_STRING(dest_ex, dest_ac);
+
 }
 void	test_ft_strlcpy()
 {
@@ -235,7 +258,7 @@ void	test_ft_strlcpy()
 	size_t excpected = strlcpy(destexp, src, sizeof(destexp));
 	size_t actual = ft_strlcpy(destact, src, sizeof(destact));
 	TEST_ASSERT_EQUAL_INT(excpected, actual);
-	printf("exp = %s , act = %s\n", destexp, destact);
+	//printf("exp = %s , act = %s\n", destexp, destact);
 	TEST_ASSERT_EQUAL_STRING(destexp, destact);
 	TEST_ASSERT_EQUAL_STRING(destexp, src);
 

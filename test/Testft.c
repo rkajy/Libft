@@ -363,6 +363,66 @@ void	test_ft_strncmp()
 
 void	test_ft_strnstr()
 {
+	const char *largestring = "Foo Bar Baz";
+	const char *smallstring = "Bar";
+	char *ptr_expt;
+	char *ptr_act;
+
+	// len = 0 should return 0
+	ptr_expt = strnstr(largestring, smallstring, 0);
+	ptr_act = ft_strnstr(largestring, smallstring, 0);
+	TEST_ASSERT_EQUAL_STRING(ptr_expt, ptr_act);
+
+	// normal case
+	ptr_expt = strnstr(largestring, smallstring, sizeof(largestring));
+	ptr_act = ft_strnstr(largestring, smallstring, sizeof(largestring));
+	TEST_ASSERT_EQUAL_STRING(ptr_expt, ptr_act);
+
+	// find empty char or string and then return first argument
+	ptr_expt = strnstr(largestring, "", sizeof(largestring));
+	ptr_act = ft_strnstr(largestring, "", sizeof(largestring));
+	TEST_ASSERT_EQUAL_STRING(ptr_expt, ptr_act);
+
+	// if the size of needle is greater than size of haystack
+	char *big = "abcdef";
+	char *little = "abcdefghijklmnop";
+	size_t max = strlen(big);
+	char *s1 = strnstr(big, little, max);
+	char *s2 = ft_strnstr(big, little, max);
+	TEST_ASSERT_EQUAL_STRING(s1, s2);
+
+	s1 = "FF";
+	s2 = "see FF your FF return FF now FF";
+	char *i1 = strnstr(s1, s2, 4);
+	char *i2 = ft_strnstr(s1, s2, 4);
+	TEST_ASSERT_EQUAL_STRING(i1, i2);
+
+	s1 = "oh no not the empty string !";
+	s2 = "";
+	max = 0;
+	i1 = strnstr(s1, s2, max);
+	i2 = ft_strnstr(s1, s2, max);
+	TEST_ASSERT_EQUAL_STRING(i1, i2);
+
+	s1 = "AAAAAAAAAAAAA";
+	max = strlen(s1);
+	i1 = strnstr(s1, s1, max);
+	i2 = ft_strnstr(s1, s1, max);
+	TEST_ASSERT_EQUAL_STRING(i1, i2);
+
+	s1 = "MZIRIBMZIRIBMZE123";
+	s2 = "MZIRIBMZE";
+	max = strlen(s2);
+	i1 = strnstr(s1, s2, max);
+	i2 = ft_strnstr(s1, s2, max);
+	TEST_ASSERT_EQUAL_STRING(i1, i2);
+
+	big = "123456789";
+	little = "9";
+	max = 8;
+	s1 = strnstr(big, little, max);
+	s2 = ft_strnstr(big, little, max);
+	TEST_ASSERT_EQUAL_STRING(s1, s2);
 
 }
 

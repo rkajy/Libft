@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 11:13:02 by radandri          #+#    #+#             */
-/*   Updated: 2025/07/10 19:14:39 by radandri         ###   ########.fr       */
+/*   Updated: 2025/07/15 01:00:05 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,41 @@
 
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	return (0);
+	size_t i;
+	size_t	needle_len;
+	
+	if (!haystack && len == 0)
+	{
+		if(!needle)
+			return NULL;
+	}
+
+	
+	needle_len = ft_strlen(needle);
+	i = 0;
+	if (needle[i] == 0)
+	{
+		return (char *)haystack;
+	}
+	
+	// if(needle[0] == '\0' || haystack == needle)
+	// 	return (char *)haystack;
+
+	// if (len == 0 || len < needle_len)
+	// 	return NULL;
+		
+	// if (needle_len > ft_strlen(haystack))
+	// 	return NULL;
+	
+	
+	while (i +needle_len <= len && haystack[i] != '\0')
+	{
+		if (ft_strncmp(&haystack[i], needle, needle_len) == 0)
+		{
+			return (char *)(&(haystack[i]));
+		}
+		i++;
+	}
+	
+	return (NULL);
 }

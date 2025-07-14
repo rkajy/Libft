@@ -207,7 +207,36 @@ void test_ft_memcpy()
 
 void test_ft_memmove()
 {
+	// Cas null-safe
+	TEST_ASSERT_NULL(ft_memmove(NULL, NULL, 0));
 
+	// Cas où src == dst
+	char buf1[] = "hello";
+	char buf2[] = "hello";
+	ft_memmove(buf1, buf1, 5);
+	memmove(buf2, buf2, 5);
+	TEST_ASSERT_EQUAL_MEMORY(buf1, buf2, 5);
+
+	// Copie sans chevauchement
+	char d1[20] = "oldstring";
+	char d2[20] = "oldstring";
+	ft_memmove(d1, "newstring", 9);
+	memmove(d2, "newstring", 9);
+	TEST_ASSERT_EQUAL_MEMORY(d1, d2, 20);
+
+	// Chevauchement vers l’avant (src < dst)
+	char overlap1[] = "123456789";
+	char overlap2[] = "123456789";
+	ft_memmove(overlap1 + 2, overlap1, 5);   // "121234589"
+	memmove(overlap2 + 2, overlap2, 5);
+	TEST_ASSERT_EQUAL_MEMORY(overlap1, overlap2, 9);
+
+	// Chevauchement vers l’arrière (dst < src)
+	char back1[] = "abcdef";
+	char back2[] = "abcdef";
+	ft_memmove(back1, back1 + 2, 4);  // "cdefef"
+	memmove(back2, back2 + 2, 4);
+	TEST_ASSERT_EQUAL_MEMORY(back1, back2, 6);
 }
 
 void test_ft_memset()
@@ -391,6 +420,7 @@ int main(void)
 	RUN_TEST(test_ft_memcpy);
 	RUN_TEST(test_ft_memcmp);
 	RUN_TEST(test_ft_memchr);
+	RUN_TEST(test_ft_memmove);
 	UNITY_END();
 
 	return 0;

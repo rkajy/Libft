@@ -349,12 +349,40 @@ void	test_ft_strncmp()
 
 void	test_ft_strnstr()
 {
+	char str[] = "bonjour";
+	TEST_ASSERT_EQUAL_STRING(
+		strchr(str, 'b'),
+		ft_strchr(str, 'b')
+	);
 
+	TEST_ASSERT_EQUAL_STRING(
+		strchr(str, 'o'),
+		ft_strchr(str, 'o')
+	);
+
+	TEST_ASSERT_EQUAL_STRING(
+		strchr(str, '\0'),
+		ft_strchr(str, '\0')
+	);
 }
 
 void test_ft_strrchr()
 {
+	char str[] = "bonjour";
+	TEST_ASSERT_EQUAL_STRING(
+		strrchr(str, 'b'),
+		ft_strrchr(str, 'b')
+	);
 
+	TEST_ASSERT_EQUAL_STRING(
+		strrchr(str, 's'),
+		ft_strrchr(str, 's')
+	);
+
+	TEST_ASSERT_EQUAL_STRING(
+		strrchr(str + 2, 'b'),
+		ft_strrchr(str + 2, 'b')
+	);
 }
 
 void test_ft_tolower()

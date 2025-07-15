@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 22:24:24 by radandri          #+#    #+#             */
-/*   Updated: 2025/07/11 10:51:47 by radandri         ###   ########.fr       */
+/*   Updated: 2025/07/15 14:28:44 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 size_t	ft_strlen(const char *s)
 {
-	unsigned long long	size;
+	size_t	size;
 
 	size = 0;
-	while (s && s[size] != '\0')
+	while (s[size] != '\0')
 	{
 		size++;
 	}

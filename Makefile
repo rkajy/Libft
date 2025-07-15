@@ -81,4 +81,15 @@ format_norm:
 	fi
 	bash utils/format_norm.sh
 
-.PHONY: all compile test clean install norminette format_norm 
+commit:
+	git add . && \
+	cd src && git add . && cd .. && \
+	read -p "Commit message: " msg && \
+	git commit -m "$$msg" && \
+	cd src && git commit -m "$$msg"
+
+push:
+	git push && \
+	cd src && git push
+
+.PHONY: all compile test clean install norminette format_norm commit push

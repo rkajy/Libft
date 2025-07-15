@@ -69,6 +69,10 @@ clean:
 	rm -rf $(PATHO) $(PATHR) $(PATHD) $(PATHS)*.out
 
 norminette:
+	if ! command -v norminette &> /dev/null; then \
+		python3 -m pip install --upgrade pip; \
+		python3 -m pip install norminette; \
+	fi
 	norminette $(PATHS)
 
 .PHONY: all compile test clean install

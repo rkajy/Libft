@@ -75,4 +75,10 @@ norminette:
 	fi
 	norminette $(PATHS)
 
-.PHONY: all compile test clean install
+format_norm:
+	if ! command -v c-formatter-42 &> /dev/null; then \
+		pip3 install --user c_formatter_42; \
+	fi
+	bash utils/format_norm.sh
+
+.PHONY: all compile test clean install norminette format_norm 

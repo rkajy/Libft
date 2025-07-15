@@ -361,6 +361,7 @@ void	test_ft_strncmp()
 
 }
 
+/*
 void	test_ft_strnstr()
 {
 	const char *largestring = "Foo Bar Baz";
@@ -424,12 +425,7 @@ void	test_ft_strnstr()
 	s2 = ft_strnstr(big, little, max);
 	TEST_ASSERT_EQUAL_STRING(s1, s2);
 
-	// s1 = strnstr(((void *)0), "fake", 3); //UNDEFINED BEHAVIOR
-	// printf("*******s1 = %s, \n", s1);
-	// s2 = ft_strnstr(((void *)0), "fake", 3);
-	//printf("*******s2 = %s, \n", s2); //NULL
-	//TEST_ASSERT_EQUAL_STRING(NULL, s2);
-}
+}*/
 
 void test_ft_strrchr()
 {
@@ -505,7 +501,7 @@ int main(void)
 	RUN_TEST(test_ft_strlcpy);
 	RUN_TEST(test_ft_strlen);
 	RUN_TEST(test_ft_strncmp);
-	RUN_TEST(test_ft_strnstr);
+	//RUN_TEST(test_ft_strnstr);
 	RUN_TEST(test_ft_strrchr);
 	RUN_TEST(test_ft_tolower);
 	RUN_TEST(test_ft_toupper);

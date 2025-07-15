@@ -12,7 +12,7 @@ BUILD_PATHS = $(PATHO) $(PATHR) $(PATHD)
 
 # Compilation
 CC = cc
-CFLAGS = -I. -I$(PATHD) -I$(PATHS) -I$(UNITY) -DTEST
+CFLAGS = -Werror -Wall -Werror -I. -I$(PATHD) -I$(PATHS) -I$(UNITY) -DTEST
 LDFLAGS =
 
 # Résultats des tests

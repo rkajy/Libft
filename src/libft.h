@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 22:55:01 by radandri          #+#    #+#             */
-/*   Updated: 2025/07/16 14:18:37 by radandri         ###   ########.fr       */
+/*   Updated: 2025/07/16 14:43:52 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,5 @@ int		ft_memcmp(const void *s1, const void *s2, size_t n);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 int		ft_atoi(const char *str);
 char	*ft_strdup(const char *s1);
+void	*ft_calloc(size_t count, size_t size);
 #endif

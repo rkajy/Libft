@@ -486,12 +486,17 @@ void tearDown()
 
 }
 
-void ft_strdup_test()
+void test_ft_strdup()
 {
 	TEST_ASSERT_EQUAL_STRING(
 		strdup("Halo!"),
 		ft_strdup("Halo!")
 	);
+}
+
+void	test_ft_calloc()
+{
+
 }
 
 int main(void)
@@ -518,7 +523,8 @@ int main(void)
 	RUN_TEST(test_ft_memcmp);
 	RUN_TEST(test_ft_memchr);
 	RUN_TEST(test_ft_memmove);
-	RUN_TEST(ft_strdup_test);
+	RUN_TEST(test_ft_strdup);
+	RUN_TEST(test_ft_calloc);
 	UNITY_END();
 
 	return 0;

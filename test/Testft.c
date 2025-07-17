@@ -499,6 +499,34 @@ void	test_ft_calloc()
 
 }
 
+void	test_ft_substr()
+{
+	char *str = "Peer to peer programing is good";
+	char *sbst_expected = "programing is";
+	TEST_ASSERT_EQUAL_STRING(
+		sbst_expected,
+		ft_substr(str, 13, 13)
+	);
+	
+	TEST_ASSERT_EQUAL_STRING(
+		"",
+		ft_substr("", 0, 0)
+	);
+}
+
+void	test_ft_srtjoin()
+{
+	char *s1 = "my favorite animal is";
+	char *s2 = " ";
+	char *s3 = "the nyancat";
+	char *res = ft_strjoin(ft_strjoin(s1, s2), s3);
+
+	TEST_ASSERT_EQUAL_STRING(
+		"my favorite animal is the nyancat",
+		res
+	);
+}
+
 int main(void)
 {
 	UNITY_BEGIN();
@@ -525,6 +553,8 @@ int main(void)
 	RUN_TEST(test_ft_memmove);
 	RUN_TEST(test_ft_strdup);
 	RUN_TEST(test_ft_calloc);
+	RUN_TEST(test_ft_substr);
+	RUN_TEST(test_ft_srtjoin);
 	UNITY_END();
 
 	return 0;

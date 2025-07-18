@@ -527,6 +527,27 @@ void	test_ft_srtjoin()
 	);
 }
 
+void	test_ft_strtrim()
+{
+
+}
+
+void	test_ft_itoa()
+{
+	TEST_ASSERT_EQUAL_STRING(
+		"4589",
+		ft_itoa(4589)
+	);
+	TEST_ASSERT_EQUAL_STRING(
+		"-4589",
+		ft_itoa(-4589)
+	);
+	TEST_ASSERT_EQUAL_STRING(
+		"-2147483648",
+		ft_itoa(-2147483648)
+	);
+}
+
 int main(void)
 {
 	UNITY_BEGIN();
@@ -555,6 +576,8 @@ int main(void)
 	RUN_TEST(test_ft_calloc);
 	RUN_TEST(test_ft_substr);
 	RUN_TEST(test_ft_srtjoin);
+	RUN_TEST(test_ft_strtrim);
+	RUN_TEST(test_ft_itoa);
 	UNITY_END();
 
 	return 0;

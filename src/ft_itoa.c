@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 22:22:23 by radandri          #+#    #+#             */
-/*   Updated: 2025/07/18 14:02:52 by radandri         ###   ########.fr       */
+/*   Updated: 2025/07/19 20:46:15 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,11 @@
 
 static int	ft_int_len(long n)
 {
-	int	isneg;
 	int	len;
 
-	isneg = 0;
 	len = 0;
 	if (n < 0)
 	{
-		isneg = 1;
 		n = n * -1;
 		len++;
 	}

@@ -529,7 +529,26 @@ void	test_ft_srtjoin()
 
 void	test_ft_strtrim()
 {
-
+	TEST_ASSERT_EQUAL_STRING
+	(
+		"Hello . World",
+		ft_strtrim("...Hello . World......", ".")
+	);
+	TEST_ASSERT_EQUAL_STRING
+	(
+		"school",
+		ft_strtrim("423school", "423")
+	);
+	TEST_ASSERT_EQUAL_STRING
+	(
+		"lorem \n ipsum \t dolor \n sit \t amet",
+		ft_strtrim("lorem \n ipsum \t dolor \n sit \t amet", " ")
+	);
+	TEST_ASSERT_EQUAL_STRING
+	(
+		"abcd",
+		ft_strtrim("abcd", "")
+	);
 }
 
 void	test_ft_itoa()
@@ -546,6 +565,38 @@ void	test_ft_itoa()
 		"-2147483648",
 		ft_itoa(-2147483648)
 	);
+}
+
+void	test_striteri()
+{
+
+}
+
+void	test_strmapi()
+{
+
+}
+
+void	test_ft_split()
+{
+	// char months[] = "JAN,FEB,MAR,APR,MAY,JUN,JUL,AUG,SEP,OCT,NOV,DEC";
+	// TEST_ASSERT_EQUAL_INT(
+	// 	12,
+	// 	word_count(months, ',')
+	// );
+	// TEST_ASSERT_EQUAL_INT(
+	// 	10,
+	// 	word_count("JAN,FEB,MAR,,MAY,JUN,,AUG,SEP,OCT,NOV,DEC", ',')
+	// );
+
+// 	| Call                           | Expected Result            |
+// | ------------------------------ | -------------------------- |
+// | `ft_split("Hello world", ' ')` | `["Hello", "world", NULL]` |
+// | `ft_split("42", ' ')`          | `["42", NULL]`             |
+// | `ft_split("", ' ')`            | `[NULL]`                   |
+// | `ft_split(NULL, ' ')`          | `NULL`                     |
+// | `ft_split("a,,b,c", ',')`      | `["a", "b", "c", NULL]`    |
+
 }
 
 int main(void)
@@ -578,6 +629,9 @@ int main(void)
 	RUN_TEST(test_ft_srtjoin);
 	RUN_TEST(test_ft_strtrim);
 	RUN_TEST(test_ft_itoa);
+	RUN_TEST(test_striteri);
+	RUN_TEST(test_strmapi);
+	RUN_TEST(test_ft_split);
 	UNITY_END();
 
 	return 0;

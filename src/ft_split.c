@@ -6,88 +6,99 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 16:10:22 by radandri          #+#    #+#             */
-/*   Updated: 2025/07/20 14:52:23 by radandri         ###   ########.fr       */
+/*   Updated: 2025/07/20 23:43:10 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-// #include <stdio.h>
-// #include <string.h>
 
- static int	word_count(const char *s, char c)
+static int	word_count(const char *s, char c);
+static char	**fill_words(char const *s, char c, char **words);
+
+static int	word_count(const char *s, char c)
 {
-    int	i;
-	int	k;
+	int	i;
+	int	in_word;
 	int	word;
-	
+
 	i = 0;
-	k = 0;
+	in_word = 0;
 	word = 0;
 	while (s[i])
 	{
-		//printf("before i = %d, k = %d, word = %d, s[i=%d] = %c\n", i, k, word, i, s[i]);
-		if (s[i] != c && !k)
-		{
-			k = 1;
-			word++;
-		}
-		else if (s[i] == c)
-		{
-			k = 0;
-		}		
-		i++;
+			if (s[i] != c && !in_word)
+			{
+				in_word = 1;
+				word++;
+			}
+			else if (s[i] == c)
+			{
+				in_word = 0;
+			}
+			i++;
 	}
-	return word;
+	return (word);
 }
+#include <stdio.h>
 
-static void	fill_words(char const *s, char c, char **words, int m)
+static char	**fill_words(char const *s, char delimiter, char **words)
 {
-    int	i;
-	int	k;
-	int	first;
-	size_t	len;
-	
+	int		i;
+	int		in_word;
+	int		start;
+	int	idx;
+
 	i = 0;
-	k = 0;
-	first = 0;
+	in_word = 0;
+	start = 0;
+	idx = 0;
 	while (s[i])
 	{
-		first = i;
-		if (s[i] != c && !k)
+		if (s[i] != delimiter && in_word == 0)
 		{
-			k = 1;
-
+			start = i;
+			in_word = 1;
 		}
-		else if (s[i] == c)
+		else if (s[i] == delimiter && in_word == 1)
 		{
-			k = 0;
-			len = i;
-			words[m]= ft_substr(s, first, len-first);
-		}		
+			in_word = 0;
+			words[idx++] = ft_substr(s, start, i - start);
+		}
 		i++;
 	}
+	if (in_word == 1)
+		words[idx++] = ft_substr(s, start, i - start);
+	words[idx] = NULL;
+	return (words);
 }
 
 char	**ft_split(char const *s, char c)
 {
 	char	**result;
-	int	words_numbers;
-	int	i;
+	int		count;
 
-	words_numbers = word_count(s, c);
-	result = malloc(sizeof(char*) * (words_numbers+1));
+	if (!s)
+		return (NULL);
+	
+	count = word_count(s, c);
+	result = malloc(sizeof(char *) * count + 1);
 	if (!result)
 		return (NULL);
-	i = 0;
-	while (i < words_numbers)
+	if (count == 0) // <- ici le cas du test "      "
 	{
-		result[i] = malloc(sizeof(char*) * 15+1);
-		if (!result[i])
-			return (NULL);
-		//strcpy(&result[i][0], "q\0");
-		fill_words(s,c,result,i);
-		i++;
+		result[0] = NULL;
+		return (result);
 	}
-	
-	return (result);
+	return (fill_words(s, c, result));
 }
+
+// int	main(void)
+// {
+// 	char	**res;
+
+// 	res = ft_split("hello world test", ' ');
+// 	for (int i = 0; res[i]; i++)
+// 		printf("[%s]\n", res[i]);
+// 	// Pense à free ici si nécessaire
+// 	return (0);
+// }

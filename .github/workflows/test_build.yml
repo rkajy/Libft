@@ -38,6 +38,7 @@ jobs:
           make clean
           make
           make install
+          cd src && make clean && make fclean && make re && make all && make clean && make fclean
 
   norminette:
     runs-on: ubuntu-latest

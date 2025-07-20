@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 22:21:07 by radandri          #+#    #+#             */
-/*   Updated: 2025/07/13 21:29:43 by radandri         ###   ########.fr       */
+/*   Updated: 2025/07/20 15:12:59 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
 	size_t	src_len;
 	size_t	dst_len;
-	int		i;
-	int		j;
+	size_t	i;
+	size_t	j;
 
 	src_len = ft_strlen(src);
 	dst_len = ft_strlen(dst);

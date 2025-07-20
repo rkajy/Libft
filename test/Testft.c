@@ -577,6 +577,26 @@ void	test_strmapi()
 
 }
 
+void test_ft_split_basic(void)
+{
+	char **res = ft_split("acfdgdf adfdsfs aerw", ' ');
+	
+	TEST_ASSERT_NOT_NULL(res);
+	TEST_ASSERT_NOT_NULL(res[0]);
+	TEST_ASSERT_NOT_NULL(res[1]);
+	TEST_ASSERT_NOT_NULL(res[2]);
+	TEST_ASSERT_NULL(res[3]);
+
+	TEST_ASSERT_EQUAL_STRING("acfdgdf", res[0]);
+	TEST_ASSERT_EQUAL_STRING("adfdsfs", res[1]);
+	TEST_ASSERT_EQUAL_STRING("aerw", res[2]);
+
+	// Libération mémoire
+	for (int i = 0; res[i]; i++)
+		free(res[i]);
+	free(res);
+}
+
 void	test_ft_split()
 {
 	// char months[] = "JAN,FEB,MAR,APR,MAY,JUN,JUL,AUG,SEP,OCT,NOV,DEC";
@@ -597,6 +617,9 @@ void	test_ft_split()
 // | `ft_split(NULL, ' ')`          | `NULL`                     |
 // | `ft_split("a,,b,c", ',')`      | `["a", "b", "c", NULL]`    |
 
+	// char *s = "JAN,FEB,MAR,APR,MAY,JUN,JUL,AUG,SEP,OCT,NOV,DEC";
+	// ft_split(s, ',');
+	test_ft_split_basic();
 }
 
 int main(void)

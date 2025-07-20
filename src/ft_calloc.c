@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 14:44:36 by radandri          #+#    #+#             */
-/*   Updated: 2025/07/16 15:38:11 by radandri         ###   ########.fr       */
+/*   Updated: 2025/07/20 21:50:04 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,5 @@ void	*ft_calloc(size_t count, size_t size)
 		temp[i] = 0;
 		i++;
 	}
-	temp[i] = 0;
 	return (temp);
 }

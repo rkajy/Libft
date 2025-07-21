@@ -38,12 +38,23 @@ SRCS =	ft_isalpha.c \
 		ft_putnbr_fd.c \
 		ft_putstr_fd.c
 
+BSRCS = ft_lstnew_bonus.c \
+		ft_lstadd_front_bonus.c \
+		ft_lstsize_bonus.c \
+		ft_lstlast_bonus.c 
+
+
 OBJS = $(SRCS:.c=.o)
+
+B_OBJS = $(BSRCS:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	ar rcs $(NAME) $(OBJS) 
+$(NAME): $(OBJS) $(B_OBJS)
+	ar rcs $(NAME) $(OBJS) $(B_OBJS)
+
+bonus: $(OBJS) $(B_OBJS)
+	ar rcs $(NAME) $(OBJS) $(B_OBJS)
 
 clean:
 	rm -f $(OBJS) $(B_OBJS)

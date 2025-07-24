@@ -58,3 +58,17 @@ jobs:
           echo "Current dir: $(pwd)"
           ls -ls
           make norminette
+
+  paco:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Run paco
+        run: |
+          make paco
+
+      - name: Run paco in strict mode
+        run: |
+          make paco_strict

@@ -81,6 +81,22 @@ format_norm:
 	fi
 	bash utils/format_norm.sh
 
+paco:
+	@git clone https://github.com/xicodomingues/francinette.git francinette; \
+	@cd francinette && \
+
+	python3 -m venv venv && \
+    . venv/bin/activate && \ 
+    pip install -r requirements.txt && \
+
+	bash francinette/tester.sh
+
+paco_strict:
+	if ! command -v paco &> /dev/null; then \
+		curl -fsSL https://raw.github.com/xicodomingues/francinette/master/bin/install.sh; \
+	fi
+	cd $(PATHS) && bash $$HOME/francinette/tester.sh
+
 commit:
 	git add . && \
 	cd src && git add . && cd .. && \
@@ -92,4 +108,4 @@ push:
 	git push && \
 	cd src && git push
 
-.PHONY: all compile test clean install norminette format_norm commit push
+.PHONY: all compile test clean install norminette format_norm commit push paco paco_strict

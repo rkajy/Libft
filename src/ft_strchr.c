@@ -3,33 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fnoor <fnoor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/08 11:03:03 by radandri          #+#    #+#             */
-/*   Updated: 2025/07/17 21:08:02 by radandri         ###   ########.fr       */
+/*   Created: 2025/08/18 16:28:48 by fnoor             #+#    #+#             */
+/*   Updated: 2025/08/18 16:59:26 by fnoor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/*
+** ft_strchr:
+** Returns a pointer to the first occurrence of character 'c'
+** in the string 's', including the null terminator.
+** If not found, returns NULL.
+*/
+
 char	*ft_strchr(const char *s, int c)
 {
-	char	pc;
-	int		i;
-
-	i = 0;
-	pc = (char)c;
-	while (s[i])
+	while (*s)
 	{
-		if (s[i] == pc)
-		{
-			return ((char *)&s[i]);
-		}
-		i++;
+		if (*s == (char)c)
+			return ((char *)s);
+		s++;
 	}
-	if (s[i] == pc)
-	{
-		return ((char *)&s[i]);
-	}
+	if ((char)c == '\0')
+		return ((char *)s);
 	return (NULL);
 }

@@ -3,33 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fnoor <fnoor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/16 11:25:45 by radandri          #+#    #+#             */
-/*   Updated: 2025/07/16 14:14:43 by radandri         ###   ########.fr       */
+/*   Created: 2025/08/18 17:20:43 by fnoor             #+#    #+#             */
+/*   Updated: 2025/08/18 17:25:48 by fnoor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *s1)
+/*
+** ft_strdup:
+** Allocates a new string and copies 's' into it,
+** including the terminating '\0'.
+** Returns pointer to new string, or NULL if malloc fails.
+*/
+char	*ft_strdup(const char *s)
 {
-	size_t	s1_len;
+	size_t	len;
+	char	*dup;
 	size_t	i;
-	char	*res;
 
-	s1_len = ft_strlen(s1);
-	i = 0;
-	res = (char *)malloc(sizeof(char) * (s1_len + 1));
-	if (!res)
-	{
+	len = ft_strlen(s);
+	dup = (char *)malloc(len + 1);
+	if (!dup)
 		return (NULL);
-	}
-	while (i < s1_len)
+	i = 0;
+	while (i < len)
 	{
-		res[i] = s1[i];
+		dup[i] = s[i];
 		i++;
 	}
-	res[i] = '\0';
-	return (res);
+	dup[i] = '\0';
+	return (dup);
 }

@@ -3,28 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fnoor <fnoor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/08 11:09:13 by radandri          #+#    #+#             */
-/*   Updated: 2025/07/13 16:52:12 by radandri         ###   ########.fr       */
+/*   Created: 2025/08/18 17:10:13 by fnoor             #+#    #+#             */
+/*   Updated: 2025/08/18 17:10:14 by fnoor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/*
+** ft_memchr:
+** Scans the first n bytes of the memory block 's'
+** for the first occurrence of (unsigned char)c.
+** Returns a pointer to the matching byte or NULL if not found.
+*/
 void	*ft_memchr(const void *s, int c, size_t n)
 {
-	unsigned char	*ps;
-	size_t			i;
+	const unsigned char	*ptr;
+	size_t				i;
 
-	ps = (unsigned char *)s;
+	ptr = (const unsigned char *)s;
 	i = 0;
 	while (i < n)
 	{
-		if (ps[i] == (unsigned char)c)
-		{
-			return (&ps[i]);
-		}
+		if (ptr[i] == (unsigned char)c)
+			return ((void *)(ptr + i));
 		i++;
 	}
 	return (NULL);

@@ -3,59 +3,51 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fnoor <fnoor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/17 22:22:23 by radandri          #+#    #+#             */
-/*   Updated: 2025/07/19 20:47:24 by radandri         ###   ########.fr       */
+/*   Created: 2025/08/18 17:50:36 by fnoor             #+#    #+#             */
+/*   Updated: 2025/08/18 17:50:41 by fnoor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_int_len(long n)
+static int	int_len(int n)
 {
 	int	len;
 
-	len = 0;
-	if (n < 0)
+	len = (n <= 0);
+	while (n)
 	{
-		n = n * -1;
 		len++;
-	}
-	if (n == 0)
-		len++;
-	while (n > 0)
-	{
-		n = n / 10;
-		len++;
+		n /= 10;
 	}
 	return (len);
 }
 
 char	*ft_itoa(int n)
 {
-	int		n_len;
-	char	*res;
-	int		isneg;
-	int		temp;
-	long	nbr;
+	long	nb;
+	int		len;
+	char	*out;
 
-	nbr = n;
-	n_len = ft_int_len(nbr);
-	isneg = n < 0;
-	if (isneg)
-		nbr = -nbr;
-	res = malloc((n_len + 1) * sizeof(char));
-	if (!res)
+	nb = n;
+	len = int_len(n);
+	out = (char *)malloc(len + 1);
+	if (!out)
 		return (NULL);
-	res[n_len] = '\0';
-	while (n_len != 0)
+	out[len] = '\0';
+	if (nb < 0)
 	{
-		temp = (n_len--) - 1;
-		res[temp] = (nbr % 10) + '0';
-		nbr = nbr / 10;
+		out[0] = '-';
+		nb = -nb;
 	}
-	if (isneg)
-		res[n_len] = '-';
-	return (res);
+	if (nb == 0)
+		out[0] = '0';
+	while (nb)
+	{
+		out[--len] = (char)('0' + (nb % 10));
+		nb /= 10;
+	}
+	return (out);
 }

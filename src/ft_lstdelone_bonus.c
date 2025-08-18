@@ -3,17 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstdelone_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fnoor <fnoor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/21 22:45:49 by radandri          #+#    #+#             */
-/*   Updated: 2025/07/22 15:50:13 by radandri         ###   ########.fr       */
+/*   Created: 2025/08/18 17:44:37 by fnoor             #+#    #+#             */
+/*   Updated: 2025/08/18 17:44:51 by fnoor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/*
+** Delete the element inside the node provided and free the node
+*/
 void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
-	(*del)(lst->content);
+	del(lst->content);
 	free(lst);
 }

@@ -3,20 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstiter_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fnoor <fnoor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/21 22:50:33 by radandri          #+#    #+#             */
-/*   Updated: 2025/07/22 15:01:09 by radandri         ###   ########.fr       */
+/*   Created: 2025/08/18 17:44:15 by fnoor             #+#    #+#             */
+/*   Updated: 2025/08/18 17:53:58 by fnoor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/*
+** Iterate over the list of nodes present and apply the function.
+*/
+
 void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	while (lst != NULL)
+	if (lst == NULL)
+		return ;
+	else
 	{
-		(*f)(lst->content);
-		lst = lst->next;
+		while (lst)
+		{
+			f(lst->content);
+			lst = lst->next;
+		}
 	}
 }

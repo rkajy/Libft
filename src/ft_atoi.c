@@ -3,45 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fnoor <fnoor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/08 11:15:50 by radandri          #+#    #+#             */
-/*   Updated: 2025/07/15 21:49:04 by radandri         ###   ########.fr       */
+/*   Created: 2025/08/18 17:14:40 by fnoor             #+#    #+#             */
+/*   Updated: 2025/08/18 17:19:57 by fnoor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_isspace(int c)
-{
-	return ((c >= 9 && c <= 13) || (c == 32));
-}
-
+/*
+** ft_atoi:
+** Converts the initial part of the string to an int.
+** Handles leading whitespace, optional sign, and digits.
+** Stops at first non-digit. Overflow is undefined (like libc atoi).
+*/
 int	ft_atoi(const char *str)
 {
-	int	i;
-	int	isnegative;
-	int	res;
+	long	result;
+	int		sign;
 
-	i = 0;
-	isnegative = 0;
-	res = 0;
-	while (ft_isspace(str[i]))
-		i++;
-	if (str[i] == '+' && str[i + 1] != '-')
-		i++;
-	if (str[i] == '-')
+	result = 0;
+	sign = 1;
+	while (*str == ' ' || (*str >= 9 && *str <= 13))
+		str++;
+	if (*str == '-' || *str == '+')
 	{
-		isnegative = 1;
-		i++;
+		if (*str == '-')
+			sign = -1;
+		str++;
 	}
-	while (str[i] && ft_isdigit(str[i]))
+	while (*str >= '0' && *str <= '9')
 	{
-		res *= 10;
-		res += str[i] - '0';
-		i++;
+		result = result * 10 + (*str - '0');
+		str++;
 	}
-	if (isnegative)
-		return (res * -1);
-	return (res);
+	return ((int)(result * sign));
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fnoor <fnoor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/17 14:33:41 by radandri          #+#    #+#             */
-/*   Updated: 2025/07/17 20:38:07 by radandri         ###   ########.fr       */
+/*   Created: 2025/08/18 17:27:51 by fnoor             #+#    #+#             */
+/*   Updated: 2025/08/18 17:31:14 by fnoor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,27 @@
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*substr;
-	size_t	i;
+	size_t	slen;
+	size_t	maxcopy;
+	char	*out;
 
 	if (!s)
 		return (NULL);
-	if (start > ft_strlen(s))
-		return (ft_strdup(""));
-	if (len > ft_strlen(s + start))
-		len = ft_strlen(s + start);
-	substr = malloc(len + 1);
-	if (!substr)
-		return (NULL);
-	i = 0;
-	while (s[start] && i < len)
+	slen = ft_strlen(s);
+	if (start >= slen)
 	{
-		substr[i] = s[start];
-		i++;
-		start++;
+		out = (char *)malloc(1);
+		if (!out)
+			return (NULL);
+		out[0] = '\0';
+		return (out);
 	}
-	substr[i] = '\0';
-	return (substr);
+	maxcopy = slen - start;
+	if (len < maxcopy)
+		maxcopy = len;
+	out = (char *)malloc(maxcopy + 1);
+	if (!out)
+		return (NULL);
+	ft_strlcpy(out, s + start, maxcopy + 1);
+	return (out);
 }

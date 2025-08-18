@@ -3,19 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fnoor <fnoor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/21 01:32:22 by radandri          #+#    #+#             */
-/*   Updated: 2025/07/22 14:00:54 by radandri         ###   ########.fr       */
+/*   Created: 2025/08/18 17:46:02 by fnoor             #+#    #+#             */
+/*   Updated: 2025/08/18 17:46:17 by fnoor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/*
+** The function basically counts the no.of nodes in the list
+*/
+
 int	ft_lstsize(t_list *lst)
 {
-	int		len;
-	t_list	*current;
+	unsigned long	len;
+	t_list			*current;
 
 	current = lst;
 	len = 0;

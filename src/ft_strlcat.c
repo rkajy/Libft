@@ -3,50 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fnoor <fnoor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/07 22:21:07 by radandri          #+#    #+#             */
-/*   Updated: 2025/07/20 15:12:59 by radandri         ###   ########.fr       */
+/*   Created: 2025/08/18 15:53:49 by fnoor             #+#    #+#             */
+/*   Updated: 2025/08/18 16:28:10 by fnoor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
+size_t	ft_strlcat(char *dst, const char *src, size_t buffer_size)
 {
-	size_t	src_len;
-	size_t	dst_len;
-	size_t	i;
-	size_t	j;
+	const char	*src_ptr;
+	char		*dst_ptr;
+	size_t		dst_len;
+	size_t		src_len;
+	size_t		remaining_space;
 
+	src_ptr = src;
+	dst_ptr = dst;
 	src_len = ft_strlen(src);
-	dst_len = ft_strlen(dst);
-	if (dstsize <= dst_len)
+	remaining_space = buffer_size;
+	while (remaining_space && *dst_ptr)
 	{
-		return (dstsize + src_len);
+		dst_ptr++;
+		remaining_space--;
 	}
-	i = dst_len;
-	j = 0;
-	while (src[j] && (i + 1 < dstsize))
+	dst_len = dst_ptr - dst;
+	if (remaining_space == 0)
+		return (dst_len + src_len);
+	while (*src_ptr && remaining_space > 1)
 	{
-		dst[i] = src[j];
-		i++;
-		j++;
+		*dst_ptr++ = *src_ptr++;
+		remaining_space--;
 	}
-	dst[i] = '\0';
+	*dst_ptr = '\0';
 	return (dst_len + src_len);
 }
-
-// #include <stdio.h>
-// #include <string.h>
-// int main()
-// {
-// 	size_t ex;
-// 	size_t ac;
-// 	char dest_ex1[15] = "aabcant";
-// 	char dest_ac2[15] = "aabcant";
-// 	ex = strlcat(dest_ex1, "lorem", 2);
-// 	ac = ft_strlcat(dest_ac2, "lorem", 2);
-
-// 	printf("ex: %lu, ac: %lu\n", ex, ac);
-// }
